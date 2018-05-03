@@ -31,7 +31,7 @@ public class TestBenchMarks {
 			Random random = new Random(new Date().getTime());
 			for (int i = 0; i < size; i++) {
 				int nextInt = random.nextInt(1000000);
-				if (nextInt > 1) {
+				if (nextInt > 100) {
 					states[i] = ChannelState.RECEIVED;
 				} else {
 					states[i] = values[nextInt % values.length];
@@ -49,14 +49,19 @@ public class TestBenchMarks {
 			switch (plan.states[i]) {
 			case CONNECTED:
 				result += ChannelState.CONNECTED.ordinal();
+				break;
 			case DISCONNECTED:
 				result += ChannelState.DISCONNECTED.ordinal();
+				break;
 			case SENT:
 				result += ChannelState.SENT.ordinal();
+				break;
 			case RECEIVED:
 				result += ChannelState.RECEIVED.ordinal();
+				break;
 			case CAUGHT:
 				result += ChannelState.CAUGHT.ordinal();
+				break;
 			}
 		}
 		bh.consume(result);
@@ -75,12 +80,16 @@ public class TestBenchMarks {
 				switch (state) {
 				case CONNECTED:
 					result += ChannelState.CONNECTED.ordinal();
+					break;
 				case SENT:
 					result += ChannelState.SENT.ordinal();
+					break;
 				case DISCONNECTED:
 					result += ChannelState.DISCONNECTED.ordinal();
+					break;
 				case CAUGHT:
 					result += ChannelState.CAUGHT.ordinal();
+					break;
 				}
 			}
 		}
